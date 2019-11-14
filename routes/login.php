@@ -1,5 +1,9 @@
 <?php
 
+Route::get('login', function () {
+    return redirect()->route('admin.show-login');
+});
+
 Route::namespace('Auth')->prefix('admin')->group(function() {
     Route::get('login', 'LoginController@showLoginForm')->name('admin.show-login');
     Route::post('login', 'LoginController@login')->name('admin.attempt-login');

@@ -14,6 +14,11 @@ use Intervention\Image\Facades\Image;
 
 class ArtistsController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     use ImageTrait;
 
     /**

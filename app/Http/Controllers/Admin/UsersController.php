@@ -12,6 +12,11 @@ use Storage;
 
 class UsersController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     use ImageTrait;
 
     /**

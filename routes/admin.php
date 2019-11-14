@@ -1,5 +1,9 @@
 <?php
 
+Route::get('dashboard', function () {
+    return redirect()->route('admin.dashboard');
+});
+
 Route::namespace('Admin')->prefix('admin')->as('admin.')->group(function() {
     Route::get('dashboard', 'AdministrationController@dashboard')->name('dashboard');
 
