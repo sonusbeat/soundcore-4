@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SinglesRequest;
 use App\Models\Artist;
 use App\Models\Single;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 use Storage;
 
 class SinglesController extends Controller
@@ -45,10 +46,10 @@ class SinglesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param SinglesRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SinglesRequest $request)
     {
         $single = new Single($request->except(['image', 'image_alt']));
 
@@ -96,11 +97,11 @@ class SinglesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Artist $artist
-     * @param \Illuminate\Http\Request $request
+     * @param Single $single
+     * @param SinglesRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Single $single, Request $request)
+    public function update(Single $single, SinglesRequest $request)
     {
         $single->update($request->except(['image', 'image_alt']));
 

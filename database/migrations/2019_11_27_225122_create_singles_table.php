@@ -15,8 +15,8 @@ class CreateSinglesTable extends Migration
     {
         Schema::create('singles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('artist_id')->index();
-            $table->string('title');
+            $table->integer('artist_id')->index();
+            $table->string('title', 200);
             $table->string('permalink')->unique();
             $table->string('feat', 100)->nullable();
             $table->string('version', 100)->default('Original Mix');
@@ -40,7 +40,7 @@ class CreateSinglesTable extends Migration
                 'noindex, follow',
                 'index, nofollow',
                 'noindex, nofollow',
-            ]);
+            ])->default('noindex, nofollow');
             $table->string('meta_description', 160);
             $table->boolean('active')->default(0);
             $table->timestamps();
