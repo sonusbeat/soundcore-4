@@ -105,23 +105,23 @@
             </table>
         </div><!-- /.col -->
     </div><!-- /.row -->
+    @if(!empty($artist->singles))
+    <div class="row ml-4 mb-4">
+        <div class="col-md-6">
+            <h2>Songs</h2>
 
-<div class="row ml-4 mb-4">
-    <div class="col-md-6">
-        <h2>Songs</h2>
-
-        <ul>
-            @foreach($artist->singles as $single)
-            <li>
-                <a href="{{ route('admin.singles.show', $single->id) }}">
-                    {{ $single->title }}
-                </a>
-            </li>
-            @endforeach
-        </ul>
+            <ul>
+                @foreach($artist->singles as $single)
+                <li>
+                    <a href="{{ route('admin.singles.show', $single->id) }}">
+                        {{ $single->title }}
+                    </a>
+                </li>
+                @endforeach
+            </ul>
+        </div>
     </div>
-</div>
-
+    @endif
 </div><!-- /.card -->
 <a href="{{ route('admin.artists.index') }}" class="btn btn-primary">Back</a>
 @endsection
