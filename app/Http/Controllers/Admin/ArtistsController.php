@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use PhpParser\Node\Expr\Cast\Object_;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArtistsRequest;
+use Illuminate\Http\Request;
 use App\Models\Artist;
 use App\Traits\ImageTrait;
 use Storage;

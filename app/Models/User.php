@@ -49,4 +49,28 @@ class User extends Authenticatable
     public function full_name() {
         return $this->attributes['first_name'] . ' ' . $this->attributes['last_name'];
     }
+
+    // *********************************** MUTATORS *********************************** //
+    /**
+     * Set the user's username.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setUsernameAttribute($value)
+    {
+        $this->attributes['username'] = strtolower(str_replace(' ', '-', $value));
+    }
+
+    /**
+     * Set the user's password.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
+    // ******************************************************************************** //
 }

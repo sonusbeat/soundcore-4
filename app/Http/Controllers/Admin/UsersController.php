@@ -6,6 +6,7 @@ use Intervention\Image\Facades\Image;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UsersCreateRequest;
 use App\Http\Requests\UsersUpdateRequest;
+//use Illuminate\Http\Request;
 use App\Models\User;
 use App\Traits\ImageTrait;
 use Storage;
@@ -49,7 +50,7 @@ class UsersController extends Controller
      */
     public function store(UsersCreateRequest $request)
     {
-        $user = new User($request->except(['image','password']));
+        $user = new User($request->except(['image', 'password_confirmation']));
 
         if ($request->hasFile('image')) :
             $file = $request->image;
@@ -65,8 +66,6 @@ class UsersController extends Controller
 
             $user->image = $image_name;
         endif;
-
-        $user->password = bcrypt(request()->password);
 
         // Save to database
         $user->save();

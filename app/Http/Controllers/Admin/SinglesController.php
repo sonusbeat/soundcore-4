@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SinglesRequest;
 use App\Models\Artist;
 use App\Models\Single;
-//use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 use App\Traits\ImageTrait;
 use Intervention\Image\Facades\Image;
 use Storage;

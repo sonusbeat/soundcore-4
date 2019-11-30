@@ -41,6 +41,19 @@ class Artist extends Model
         return $this->attributes['first_name'] . ' ' . $this->attributes['last_name'];
     }
 
+    // *********************************** MUTATORS *********************************** //
+    /**
+     * Set the artist's permalink.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setPermalinkAttribute($value)
+    {
+        $this->attributes['permalink'] = strtolower(str_replace(' ', '-', $value));
+    }
+    // ******************************************************************************** //
+
     /**
      * Get the singles for the current artist.
      */

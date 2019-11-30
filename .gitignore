@@ -15,11 +15,9 @@ yarn-error.log
 .idea/
 
 /public/images/artists/*.jpg
-/public/images/artists/*.png
-/public/images/artists/*.gif
-/public/images/artists/*.bmp
-
 /public/images/users/*.jpg
-/public/images/users/*.png
-/public/images/users/*.gif
-/public/images/users/*.bmp
+/public/images/releases/singles/*.jpg
+
+database/seeds/ArtistsTableSeeder.php
+database/seeds/SinglesTableSeeder.php
+database/seeds/UsersTableSeeder.php

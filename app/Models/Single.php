@@ -48,8 +48,20 @@ class Single extends Model
         return $this->belongsTo(Artist::class);
     }
 
-    // DASHBOARD
+    // ************************ MUTATORS ************************ //
+    /**
+     * Trait single's permalink.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setPermalinkAttribute($value)
+    {
+        $this->attributes['permalink'] = strtolower(str_replace(' ', '-', $value));
+    }
+    // ******************************************************* //
 
+    // ***************** DASHBOARD ***************** //
     /**
      * Get latest singles
      *
@@ -64,4 +76,5 @@ class Single extends Model
             ->limit($limit)
             ->get();
     }
+    // ********************************************** //
 }
