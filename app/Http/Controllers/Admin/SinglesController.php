@@ -88,8 +88,12 @@ class SinglesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Single $single)
+    public function show($id)
     {
+        $single = Single::with(['artist' => function($query) {
+            $query->select('id', 'artist_name')->first();
+        }])->find($id);
+
         return view('admin.singles.show', compact('single'));
     }
 

@@ -12,6 +12,14 @@
                 <h2 class="card-title">{{ $single->title }}</h2>
                 <table class="table">
                     <tr>
+                        <th>Artist:</th>
+                        <td>
+                            <a href="{{ route('admin.artists.show', $single->artist->id) }}">
+                                {{ $single->artist->artist_name }}
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
                         <th>Permalink:</th>
                         <td>{{ $single->permalink }}</td>
                     </tr>
