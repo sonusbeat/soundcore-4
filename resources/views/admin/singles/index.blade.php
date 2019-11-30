@@ -49,7 +49,7 @@
                             <form action="{{ route('admin.singles.destroy', $single) }}" style="display:inline" method="POST" id="delete">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="_method" value="DELETE">
-                                <button class="btn btn-danger" title="Single Single"><i class="fas fa-trash"></i></button>
+                                <button class="btn btn-danger" title="Delete Single"><i class="fas fa-trash"></i></button>
                             </form>
                         </td>
                     </tr>
