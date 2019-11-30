@@ -5,14 +5,16 @@
     <div class="col-4">
         <div class="card">
             <div class="card-header">
-                <div class="card-title">Last 5 Releases</div>
+                <div class="card-title">Last Published Singles</div>
                 <div class="card-body">
                     <ul>
-                        <li>Kentor - Beautiful Song</li>
-                        <li>Sonusbeat - I like to Dance</li>
-                        <li>Flooky - December in my memories</li>
-                        <li>Sonusbeat - Everything is so nice</li>
-                        <li>Sonusbeat - Party for tonight</li>
+                        @foreach($singles as $single)
+                        <li>
+                            <a href="{{ route('admin.singles.show', $single->id) }}">
+                                {{ $single->title }}
+                            </a>
+                        </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -22,7 +24,7 @@
     <div class="col-4">
         <div class="card">
             <div class="card-header">
-                <div class="card-title">Last 5 Messages</div>
+                <div class="card-title">Last 5 Something</div>
                 <div class="card-body">
                     <ul>
                         <li>lorem lipsum dolor dolem</li>
@@ -39,7 +41,7 @@
     <div class="col-4">
         <div class="card">
             <div class="card-header">
-                <div class="card-title">Last 5 unfinished tasks</div>
+                <div class="card-title">Last 5 something</div>
                 <div class="card-body">
                     <ul>
                         <li>lorem lipsum dolor dolem</li>

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Facade\Ignition\QueryRecorder\Query;
 use Illuminate\Database\Eloquent\Model;
 
 class Single extends Model
@@ -45,5 +46,22 @@ class Single extends Model
     public function artist()
     {
         return $this->belongsTo(Artist::class);
+    }
+
+    // DASHBOARD
+
+    /**
+     * Get latest singles
+     *
+     * @param string $order Options: asc, desc
+     * @param int $limit
+     * @return Query
+     */
+    public static function latestSingles($order = 'asc', $limit = 5)
+    {
+        return self::select('id', 'title')
+            ->orderBy('created_at', $order)
+            ->limit($limit)
+            ->get();
     }
 }
