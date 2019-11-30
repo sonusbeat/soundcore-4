@@ -105,7 +105,7 @@
             </table>
         </div><!-- /.col -->
     </div><!-- /.row -->
-    @if(!empty($artist->singles))
+    @if($artist->singles != [])
     <div class="row ml-4 mb-4">
         <div class="col-md-6">
             <h2>Songs</h2>
