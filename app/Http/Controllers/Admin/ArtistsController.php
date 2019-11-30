@@ -85,8 +85,12 @@ class ArtistsController extends Controller
      * @param  Artist $artist
      * @return \Illuminate\Http\Response
      */
-    public function show(Artist $artist)
+    public function show($id)
     {
+        $artist = Artist::with(['singles' => function($query) {
+            $query->select('id', 'artist_id', 'title')->get();
+        }])->find($id);
+
         return view('admin.artists.show', compact('artist'));
     }
 

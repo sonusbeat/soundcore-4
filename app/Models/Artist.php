@@ -40,4 +40,12 @@ class Artist extends Model
     {
         return $this->attributes['first_name'] . ' ' . $this->attributes['last_name'];
     }
+
+    /**
+     * Get the singles for the current artist.
+     */
+    public function singles()
+    {
+        return $this->hasMany(Single::class);
+    }
 }

@@ -85,7 +85,7 @@
         </div><!-- /.col -->
     </div><!-- /.row -->
 
-    <div class="row mb-4">
+    <div class="row mb-4 ml-4">
         <div class="col-md-6">
             <h2>Biography</h2>
             {!! $artist->biography !!}
@@ -105,6 +105,22 @@
             </table>
         </div><!-- /.col -->
     </div><!-- /.row -->
+
+<div class="row ml-4 mb-4">
+    <div class="col-md-6">
+        <h2>Songs</h2>
+
+        <ul>
+            @foreach($artist->singles as $single)
+            <li>
+                <a href="{{ route('admin.singles.show', $single->id) }}">
+                    {{ $single->title }}
+                </a>
+            </li>
+            @endforeach
+        </ul>
+    </div>
+</div>
 
 </div><!-- /.card -->
 <a href="{{ route('admin.artists.index') }}" class="btn btn-primary">Back</a>
