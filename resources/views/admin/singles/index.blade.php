@@ -43,13 +43,13 @@
                             </form>
                         </td>
                         <td class="text-center">
-                            <a class="btn btn-info" href="{{ route('admin.singles.show', $single) }}" title="User Info"><i class="fas fa-info"></i></a>
-                            <a class="btn btn-warning" href="{{ route('admin.singles.edit', $single) }}" title="Edit User"><i class="fas fa-edit"></i></a>
+                            <a class="btn btn-info" href="{{ route('admin.singles.show', $single) }}" title="Single Info"><i class="fas fa-info"></i></a>
+                            <a class="btn btn-warning" href="{{ route('admin.singles.edit', $single) }}" title="Edit Single"><i class="fas fa-edit"></i></a>
 
                             <form action="{{ route('admin.singles.destroy', $single) }}" style="display:inline" method="POST" id="delete">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="_method" value="DELETE">
-                                <button class="btn btn-danger" title="Delete Single"><i class="fas fa-trash"></i></button>
+                                <button class="btn btn-danger" title="Single Single"><i class="fas fa-trash"></i></button>
                             </form>
                         </td>
                     </tr>

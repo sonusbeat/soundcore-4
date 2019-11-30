@@ -43,13 +43,13 @@
                             </form>
                         </td>
                         <td class="text-center">
-                            <a class="btn btn-info" href="{{ route('admin.artists.show', $artist) }}" title="User Info"><i class="fas fa-info"></i></a>
-                            <a class="btn btn-warning" href="{{ route('admin.artists.edit', $artist) }}" title="Edit User"><i class="fas fa-edit"></i></a>
+                            <a class="btn btn-info" href="{{ route('admin.artists.show', $artist) }}" title="Artist Info"><i class="fas fa-info"></i></a>
+                            <a class="btn btn-warning" href="{{ route('admin.artists.edit', $artist) }}" title="Edit Artist"><i class="fas fa-edit"></i></a>
 
                             <form action="{{ route('admin.artists.destroy', $artist) }}" style="display:inline" method="POST" id="delete">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="_method" value="DELETE">
-                                <button class="btn btn-danger" title="Delete User"><i class="fas fa-trash"></i></button>
+                                <button class="btn btn-danger" title="Delete Artist"><i class="fas fa-trash"></i></button>
                             </form>
                         </td>
                     </tr>
