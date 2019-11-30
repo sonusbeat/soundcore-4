@@ -7,6 +7,8 @@ use App\Http\Requests\SinglesRequest;
 use App\Models\Artist;
 use App\Models\Single;
 //use Illuminate\Http\Request;
+use App\Traits\ImageTrait;
+use Intervention\Image\Facades\Image;
 use Storage;
 
 class SinglesController extends Controller
@@ -15,6 +17,8 @@ class SinglesController extends Controller
     {
         $this->middleware('auth');
     }
+
+    use ImageTrait;
 
     /**
      * Display a listing of the resource.
@@ -52,6 +56,23 @@ class SinglesController extends Controller
     public function store(SinglesRequest $request)
     {
         $single = new Single($request->except(['image', 'image_alt']));
+
+        if ($request->hasFile('image')) :
+            $file = $request->image;
+
+            $file_name = $file->getClientOriginalName();
+            $file_extension = $file->getClientOriginalExtension();
+
+            $image_name = self::filenameTraitment($file_name, $file_extension);
+
+            Image::make($file->getRealPath())
+                ->resize(1280, null, function ($constrain) {
+                    $constrain->aspectRatio();
+                })->save(public_path().'/images/releases/singles/'.$image_name);
+
+            $single->coverart = $image_name;
+            $single->coverart_alt = $request->image_alt;
+        endif;
 
         // Save to database
         $single->save();
@@ -105,6 +126,29 @@ class SinglesController extends Controller
     {
         $single->update($request->except(['image', 'image_alt']));
 
+        if ($request->hasFile('image')) :
+            $path = 'images/releases/singles/';
+            $file = $request->image;
+            $file_name = $file->getClientOriginalName();
+            $file_extension = $file->getClientOriginalExtension();
+
+            $image_name = self::filenameTraitment($file_name, $file_extension);
+
+            if(Storage::exists($path.$single->coverart)) :
+                Storage::delete($path.$single->coverart);
+            endif;
+
+            Image::make($file->getRealPath())
+                ->resize(1280, null, function ($constrain) {
+                    $constrain->aspectRatio();
+                })->save(public_path()."/{$path}".$image_name);
+
+            $single->update([
+                'coverart' => $image_name,
+                'coverart_alt' => $request->image_alt
+            ]);
+        endif;
+
         session()->flash('message', 'Single "'.$single->title.'" has been updated successfully!');
 
         return redirect()->route('admin.singles.index');
@@ -118,7 +162,7 @@ class SinglesController extends Controller
      */
     public function destroy($id)
     {
-        $path = 'images/singles/';
+        $path = 'images/releases/singles/';
 
         $single = Single::where('id', $id)->select(['id', 'title', 'coverart'])->first();
 

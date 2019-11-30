@@ -5,7 +5,7 @@
 <div class="card mb-3">
     <div class="row no-gutters">
         <div class="col-md-5 mb-4">
-            <img class="img-fluid" src="{{ asset('/images/singles/'.$single->image) }}" alt="{{ $single->title }}" title="{{ $single->title }}">
+            <img class="img-fluid" src="{{ asset('/images/releases/singles/'.$single->coverart) }}" alt="{{ $single->coverart_alt }}" title="{{ $single->title }}">
         </div>
         <div class="col-md-7">
             <div class="card-body">

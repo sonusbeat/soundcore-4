@@ -295,7 +295,7 @@
     @isset($single)
     <div class="row">
         <div class="col-5">
-            <img class="img-fluid" src="/images/artists/{{ $single->image }}" alt="">
+            <img class="img-fluid" src="/images/releases/singles/{{ $single->coverart }}" alt="{{ $single->coverart_alt }}">
         </div><!-- /.col -->
 
         <!-- Image -->
