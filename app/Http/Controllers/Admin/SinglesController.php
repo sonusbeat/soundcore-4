@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SinglesRequest;
 use App\Models\Artist;
 use App\Models\Single;
-// use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 use App\Traits\ImageTrait;
 use Intervention\Image\Facades\Image;
 use Storage;
@@ -55,23 +55,37 @@ class SinglesController extends Controller
      */
     public function store(SinglesRequest $request)
     {
-        $single = new Single($request->except(['image', 'image_alt']));
+        $single = new Single($request->except(['coverart']));
 
-        if ($request->hasFile('image')) :
-            $file = $request->image;
-
+        if ($request->hasFile('coverart')) :
+            $file = $request->coverart;
+            $date = date('Ymdims');
             $file_name = $file->getClientOriginalName();
             $file_extension = $file->getClientOriginalExtension();
 
-            $image_name = self::filenameTraitment($file_name, $file_extension);
+            $large_name = self::filenameTraitment($file_name, $file_extension, $date, 'large');
+            $medium_name = self::filenameTraitment($file_name, $file_extension, $date, 'medium');
+            $thumbnail_name = self::filenameTraitment($file_name, $file_extension, $date, 'thumbnail');
+
+            $image_name = self::removeExtension($file_name, $file_extension, $date);
 
             Image::make($file->getRealPath())
                 ->resize(1280, null, function ($constrain) {
                     $constrain->aspectRatio();
-                })->save(public_path().'/images/releases/singles/'.$image_name);
+                })->save(public_path().'/images/releases/singles/'.$large_name);
+
+            Image::make($file->getRealPath())
+                ->resize(780, null, function ($constrain) {
+                    $constrain->aspectRatio();
+                })->save(public_path().'/images/releases/singles/'.$medium_name);
+
+            Image::make($file->getRealPath())
+                ->resize(480, null, function ($constrain) {
+                    $constrain->aspectRatio();
+                })->save(public_path().'/images/releases/singles/'.$thumbnail_name);
 
             $single->coverart = $image_name;
-            $single->coverart_alt = $request->image_alt;
+            $single->coverart_alt = $request->coverart_alt;
         endif;
 
         // Save to database
@@ -128,29 +142,49 @@ class SinglesController extends Controller
      */
     public function update(Single $single, SinglesRequest $request)
     {
-        $single->update($request->except(['image', 'image_alt']));
+        $single->update($request->except(['coverart']));
 
-        if ($request->hasFile('image')) :
+        if ($request->hasFile('coverart')) :
             $path = 'images/releases/singles/';
-            $file = $request->image;
+            $file = $request->coverart;
+            $date = date('Ymdims');
             $file_name = $file->getClientOriginalName();
             $file_extension = $file->getClientOriginalExtension();
 
-            $image_name = self::filenameTraitment($file_name, $file_extension);
+            $large_name = self::filenameTraitment($file_name, $file_extension, $date, 'large');
+            $medium_name = self::filenameTraitment($file_name, $file_extension, $date, 'medium');
+            $thumbnail_name = self::filenameTraitment($file_name, $file_extension, $date, 'thumbnail');
 
-            if(Storage::exists($path.$single->coverart)) :
-                Storage::delete($path.$single->coverart);
+            $image_name = self::removeExtension($file_name, $file_extension, $date);
+
+            if(Storage::exists($path.$single->coverart.'-large.jpg')) :
+                Storage::delete($path.$single->coverart.'-large.jpg');
+            endif;
+
+            if(Storage::exists($path.$single->coverart.'-medium.jpg')) :
+                Storage::delete($path.$single->coverart.'-medium.jpg');
+            endif;
+
+            if(Storage::exists($path.$single->coverart.'-thumbnail.jpg')) :
+                Storage::delete($path.$single->coverart.'-thumbnail.jpg');
             endif;
 
             Image::make($file->getRealPath())
                 ->resize(1280, null, function ($constrain) {
                     $constrain->aspectRatio();
-                })->save(public_path()."/{$path}".$image_name);
+                })->save(public_path().'/images/releases/singles/'.$large_name);
 
-            $single->update([
-                'coverart' => $image_name,
-                'coverart_alt' => $request->image_alt
-            ]);
+            Image::make($file->getRealPath())
+                ->resize(780, null, function ($constrain) {
+                    $constrain->aspectRatio();
+                })->save(public_path().'/images/releases/singles/'.$medium_name);
+
+            Image::make($file->getRealPath())
+                ->resize(480, null, function ($constrain) {
+                    $constrain->aspectRatio();
+                })->save(public_path().'/images/releases/singles/'.$thumbnail_name);
+
+            $single->update(['coverart' => $image_name]);
         endif;
 
         session()->flash('message', 'Single "'.$single->title.'" has been updated successfully!');
@@ -171,8 +205,16 @@ class SinglesController extends Controller
         $single = Single::where('id', $id)->select(['id', 'title', 'coverart'])->first();
 
         // Delete file from disk
-        if(Storage::exists($path.$single->coverart)) :
-            Storage::delete($path.$single->coverart);
+        if(Storage::exists($path.$single->coverart.'-large.jpg')) :
+            Storage::delete($path.$single->coverart.'-large.jpg');
+        endif;
+
+        if(Storage::exists($path.$single->coverart.'-medium.jpg')) :
+            Storage::delete($path.$single->coverart.'-medium.jpg');
+        endif;
+
+        if(Storage::exists($path.$single->coverart.'-thumbnail.jpg')) :
+            Storage::delete($path.$single->coverart.'-thumbnail.jpg');
         endif;
 
         // Delete from database

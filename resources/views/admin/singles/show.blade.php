@@ -5,7 +5,12 @@
 <div class="card mb-3">
     <div class="row no-gutters">
         <div class="col-md-5 mb-4">
-            <img class="img-fluid" src="{{ asset('/images/releases/singles/'.$single->coverart) }}" alt="{{ $single->coverart_alt }}" title="{{ $single->title }}">
+{{--             --}}
+            @if($single->coverart !== '')
+                <img class="img-fluid" src="/images/releases/singles/{{ $single->coverart }}-medium.jpg" alt="{{ $single->coverart_alt }}" title="{{ $single->coverart_alt }}">
+            @else
+                <img class="img-fluid" src="/images/no-image.jpg" alt="No Image Available" title="No Image Available">
+            @endif
         </div>
         <div class="col-md-7">
             <div class="card-body">

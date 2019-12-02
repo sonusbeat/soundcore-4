@@ -136,30 +136,41 @@
         </div><!-- /.col -->
     </div><!-- /.row -->
     <hr>
-    @if(!isset($single))
-    <!-- Image -->
-    <div class="form-group row">
-        <label for="image" class="col-sm-3 text-right control-label col-form-label">Image</label>
-        <div class="col-sm-9">
-            <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
-            @error('image')
-            <div class="alert alert-danger mt-3">{{ $message }}</div>
-            @enderror
-        </div>
-    </div>
+    <div class="row">
+        <div class="col-5">
+            @if(isset($single) && $single->coverart !== '')
+                <img class="img-fluid" src="/images/releases/singles/{{ $single->coverart }}-medium.jpg" alt="{{ $single->coverart_alt }}" title="{{ $single->coverart_alt }}">
+            @else
+                <img class="img-fluid" src="/images/no-image.jpg" alt="No Image Available" title="No Image Available">
+            @endif
+        </div><!-- /.col -->
 
-    <!-- Image Alt -->
-    <div class="form-group row">
-        <label for="image_alt" class="col-sm-3 text-right control-label col-form-label">Alternative Image Text</label>
-        <div class="col-sm-9">
-            <input type="text" class="form-control @error('image_alt') is-invalid @enderror" id="image_alt" name="image_alt" value="{{ isset($single) ? $single->image_alt : old('image_alt') }}">
-            @error('image_alt')
-            <div class="alert alert-danger mt-3">{{ $message }}</div>
-            @enderror
+        <!-- Image -->
+        <div class="col-7 d-flex flex-column justify-content-center">
+
+            <div class="form-group">
+                <label for="coverart">Coverart</label>
+
+                <input type="file" class="form-control @error('coverart') is-invalid @enderror" id="coverart" name="coverart">
+
+                @error('coverart')
+                <div class="alert alert-danger mt-3">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <!-- Image Alt -->
+            <div class="form-group">
+                <label for="coverart_alt">Alternative Image Text</label>
+                <input type="text" class="form-control @error('coverart_alt') is-invalid @enderror" id="coverart_alt" name="coverart_alt" value="{{ isset($single) ? $single->coverart_alt : old('coverart_alt') }}">
+
+                @error('coverart_alt')
+                <div class="alert alert-danger mt-3">{{ $message }}</div>
+                @enderror
+            </div>
         </div>
-    </div>
-    @endif
-<hr>
+    </div><!-- /.row -->
+
+    <hr>
     <!-- Description -->
     <div class="form-group">
         <label for="description">Description</label>
@@ -291,38 +302,6 @@
             </div>
         </div><!-- /.col -->
     </div><!-- /.row -->
-
-    @isset($single)
-    <div class="row">
-        <div class="col-5">
-            <img class="img-fluid" src="/images/releases/singles/{{ $single->coverart }}" alt="{{ $single->coverart_alt }}">
-        </div><!-- /.col -->
-
-        <!-- Image -->
-        <div class="col-7 d-flex flex-column justify-content-center">
-
-            <div class="form-group">
-                <label for="image">Image</label>
-
-                <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
-
-                @error('image')
-                <div class="alert alert-danger mt-3">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <!-- Image Alt -->
-            <div class="form-group">
-                <label for="image_alt">Alternative Image Text</label>
-                <input type="text" class="form-control @error('image_alt') is-invalid @enderror" id="image_alt" name="image_alt" value="{{ isset($single) ? $single->image_alt : old('image_alt') }}">
-
-                @error('image_alt')
-                <div class="alert alert-danger mt-3">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
-    </div><!-- /.row -->
-    @endisset
 </div><!-- /.card-body -->
 
 <!-- Button Save -->
