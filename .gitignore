@@ -17,6 +17,7 @@ yarn-error.log
 /public/images/artists/*.jpg
 /public/images/users/*.jpg
 /public/images/releases/singles/*.jpg
+/public/images/releases/albums/*.jpg
 
 database/seeds/ArtistsTableSeeder.php
 database/seeds/SinglesTableSeeder.php

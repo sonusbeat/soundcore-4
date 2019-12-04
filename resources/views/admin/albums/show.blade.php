@@ -1,59 +1,55 @@
 @extends('templates.admin')
-@section('page_title', 'Single')
+@section('page_title', 'Album')
 
 @section('content')
 <div class="card mb-3">
     <div class="row no-gutters">
         <div class="col-md-5 mb-4">
-            @if($single->coverart != '')
-                <img class="img-fluid" src="/images/releases/singles/{{ $single->coverart }}-medium.jpg" alt="{{ $single->coverart_alt }}" title="{{ $single->coverart_alt }}">
+            @if($album->coverart != '')
+                <img class="img-fluid" src="/images/releases/albums/{{ $album->coverart }}-medium.jpg" alt="{{ $album->coverart_alt }}" title="{{ $album->coverart_alt }}">
             @else
                 <img class="img-fluid" src="/images/no-image.jpg" alt="No Image Available" title="No Image Available">
             @endif
         </div>
         <div class="col-md-7">
             <div class="card-body">
-                <h2 class="card-title">{{ $single->title }}</h2>
+                <h2 class="card-title">{{ $album->name }}</h2>
                 <table class="table">
                     <tr>
                         <th>Artist</th>
                         <td>
-                            <a href="{{ route('admin.artists.show', $single->artist->id) }}">
-                                {{ $single->artist->artist_name }}
+                            <a href="{{ route('admin.artists.show', $album->artist->id) }}">
+                                {{ $album->artist->artist_name }}
                             </a>
                         </td>
                     </tr>
                     <tr>
                         <th>Permalink</th>
-                        <td>{{ $single->permalink }}</td>
-                    </tr>
-                    <tr>
-                        <th>Feat</th>
-                        <td>{{ $single->feat }}</td>
-                    </tr>
-                    <tr>
-                        <th>Version</th>
-                        <td>{{ $single->version }}</td>
-                    </tr>
-                    <tr>
-                        <th>Genre</th>
-                        <td>{{ $single->genre }}</td>
-                    </tr>
-                    <tr>
-                        <th>Time</th>
-                        <td>{{ $single->time }}</td>
+                        <td>{{ $album->permalink }}</td>
                     </tr>
                     <tr>
                         <th>Catalog</th>
-                        <td>{{ $single->catalog }}</td>
+                        <td>{{ $album->catalog }}</td>
                     </tr>
                     <tr>
                         <th>UPC</th>
-                        <td>{{ $single->upc }}</td>
+                        <td>{{ $album->upc }}</td>
                     </tr>
                     <tr>
                         <th>ISRC</th>
-                        <td>{{ $single->isrc }}</td>
+                        <td>{{ $album->isrc }}</td>
+                    </tr>
+                    <tr>
+                        <th>Tracks Quantity</th>
+                        <td>{{ $album->tracks_quantity }}</td>
+                    </tr>
+                    <tr>
+                        <th>Various Artists</th>
+                        <td>{{ $album->various_artists ? 'Yes' : 'No' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Genre</th>
+                        <td>{{ $album->genre }}</td>
                     </tr>
                 </table>
             </div>
@@ -66,15 +62,15 @@
             <table class="table">
                 <tr>
                     <th>Meta Title</th>
-                    <th>{{ $single->meta_title }}</th>
+                    <th>{{ $album->meta_title }}</th>
                 </tr>
                 <tr>
                     <th>Meta Robots</th>
-                    <th>{{ $single->meta_robots }}</th>
+                    <th>{{ $album->meta_robots }}</th>
                 </tr>
                 <tr>
                     <th>Meta Description</th>
-                    <th>{{ $single->meta_description }}</th>
+                    <th>{{ $album->meta_description }}</th>
                 </tr>
             </table>
         </div><!-- /.col -->
@@ -83,27 +79,27 @@
             <table class="table">
                 <tr>
                     <th>Beatport</th>
-                    <th>{{ $single->beatport }}</th>
+                    <th>{{ $album->beatport }}</th>
                 </tr>
                 <tr>
                     <th>Itunes</th>
-                    <th>{{ $single->itunes }}</th>
+                    <th>{{ $album->itunes }}</th>
                 </tr>
                 <tr>
                     <th>Spotify</th>
-                    <th>{{ $single->spotify }}</th>
+                    <th>{{ $album->spotify }}</th>
                 </tr>
                 <tr>
                     <th>Deezer</th>
-                    <th>{{ $single->deezer }}</th>
+                    <th>{{ $album->deezer }}</th>
                 </tr>
                 <tr>
                     <th>Soundcloud</th>
-                    <th>{{ $single->soundcloud }}</th>
+                    <th>{{ $album->soundcloud }}</th>
                 </tr>
                 <tr>
                     <th>Youtube</th>
-                    <th>{{ $single->youtube }}</th>
+                    <th>{{ $album->youtube }}</th>
                 </tr>
             </table>
         </div><!-- /.col -->
@@ -112,7 +108,7 @@
     <div class="row mb-4 ml-4">
         <div class="col-md-6">
             <h2>Description</h2>
-            {!! $single->description !!}
+            {!! $album->description !!}
         </div><!-- /.col -->
         <div class="col-md-6">
             <h2>Dates</h2>
@@ -120,20 +116,20 @@
             <table class="table">
                 <tr>
                     <th>Created At</th>
-                    <td>{{ $single->created_at }}</td>
+                    <td>{{ $album->created_at }}</td>
                 </tr>
                 <tr>
                     <th>Updated At</th>
-                    <td>{{ $single->updated_at }}</td>
+                    <td>{{ $album->updated_at }}</td>
                 </tr>
                 <tr>
                     <th>Released At</th>
-                    <td>{{ $single->released_at }}</td>
+                    <td>{{ $album->released_at }}</td>
                 </tr>
             </table>
         </div><!-- /.col -->
     </div><!-- /.row -->
 
 </div><!-- /.card -->
-<a href="{{ route('admin.singles.index') }}" class="btn btn-primary">Back</a>
+<a href="{{ route('admin.albums.index') }}" class="btn btn-primary">Back</a>
 @endsection

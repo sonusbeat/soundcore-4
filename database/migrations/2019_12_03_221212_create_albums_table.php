@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSinglesTable extends Migration
+class CreateAlbumsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,18 @@ class CreateSinglesTable extends Migration
      */
     public function up()
     {
-        Schema::create('singles', function (Blueprint $table) {
+        Schema::create('albums', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('artist_id')->index();
-            $table->integer('album_id')->nullable()->index();
-            $table->string('title', 200);
-            $table->string('permalink')->unique();
-            $table->string('feat', 100)->nullable();
-            $table->string('version', 100)->default('Original Mix');
-            $table->string('genre', 100);
-            $table->string('time', 10);
-            $table->string('catalog', 100)->unique();
-            $table->string('upc', 100)->unique();
+            $table->integer('artist_id')->unsigned()->index();
+            $table->string('name', 200)->unique();
+            $table->string('permalink', 200)->unique();
+            $table->string('catalog')->unique();
+            $table->string('upc')->unique();
             $table->string('isrc', 100)->unique();
             $table->date('released_at');
+            $table->integer('tracks_quantity');
+            $table->boolean('various_artists')->default(0);
+            $table->string('genre', 100);
             $table->text('description');
             $table->string('coverart')->nullable();
             $table->string('coverart_alt')->nullable();
@@ -56,6 +54,6 @@ class CreateSinglesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('singles');
+        Schema::dropIfExists('albums');
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Routing\Route;
 use Illuminate\Validation\Rule;
 
-class SinglesRequest extends FormRequest
+class AlbumsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,7 +21,6 @@ class SinglesRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @param Route $route
      * @return array
      */
     public function rules(Route $route)
@@ -30,16 +29,14 @@ class SinglesRequest extends FormRequest
 
         return [
             'artist_id' => 'required',
-            'title'     => 'required|between:3,200',
+            'name'      => 'required|between:3,200',
             'permalink' => 'required|between:3,200|unique:singles,permalink,'.$id,
-            'feat'      => 'required|between:3,150',
-            'version'   => 'required|between:3,50',
-            'genre'     => 'required|between:3,100',
-            'time'      => 'required|max:10',
             'catalog'   => 'required|between:3,150|unique:singles,catalog,'.$id,
             'upc'       => 'required|between:3,255|unique:singles,upc,'.$id,
             'isrc'      => 'required|between:3,255|unique:singles,isrc,'.$id,
-            'released_at'  => 'required|date',
+            'released_at' => 'required|date',
+            'tracks_quantity' => 'required|max:10',
+            'genre'     => 'required|between:3,100',
             'description'  => 'required|min:8',
             'coverart'     => 'nullable|image|max:5000',
             'coverart_alt' => 'nullable|between:3,150',

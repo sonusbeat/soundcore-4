@@ -23,7 +23,7 @@
                         <option disabled selected>Select an option</option>
                         @foreach($artists as $artist)
                             <option value="{{ $artist->id }}"
-                            {{ (isset($single) and ($single->artist_id == $artist->id)) ? " selected" : null }}
+                            {{ (isset($album) and ($album->artist_id == $artist->id)) ? " selected" : null }}
                             {{ old('artist_id') == $artist->id ? " selected" : null }}
                             >{{ $artist->artist_name }}</option>
                         @endforeach
@@ -34,12 +34,12 @@
                 </div>
             </div>
 
-            <!-- Title -->
+            <!-- Name -->
             <div class="form-group row">
-                <label for="title" class="col-sm-3 text-right control-label col-form-label">Title</label>
+                <label for="name" class="col-sm-3 text-right control-label col-form-label">Name</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ isset($single) ? $single->title : old('title') }}">
-                    @error('title')
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ isset($album) ? $album->name : old('name') }}">
+                    @error('name')
                         <div class="alert alert-danger mt-3">{{ $message }}</div>
                     @enderror
                 </div>
@@ -49,62 +49,18 @@
             <div class="form-group row">
                 <label for="permalink" class="col-sm-3 text-right control-label col-form-label">Permalink</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control @error('permalink') is-invalid @enderror" id="permalink" name="permalink" value="{{ isset($single) ? $single->permalink : old('permalink') }}">
+                    <input type="text" class="form-control @error('permalink') is-invalid @enderror" id="permalink" name="permalink" value="{{ isset($album) ? $album->permalink : old('permalink') }}">
                     @error('permalink')
                     <div class="alert alert-danger mt-3">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
 
-            <!-- Feat -->
-            <div class="form-group row">
-                <label for="feat" class="col-sm-3 text-right control-label col-form-label">Feat</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control @error('feat') is-invalid @enderror" id="feat" name="feat" value="{{ isset($single) ? $single->feat : old('feat') }}">
-                    @error('feat')
-                    <div class="alert alert-danger mt-3">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
-
-            <!-- Version -->
-            <div class="form-group row">
-                <label for="version" class="col-sm-3 text-right control-label col-form-label">Version</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control @error('version') is-invalid @enderror" id="version" name="version" value="{{ isset($single) ? $single->version : old('version') }}">
-                    @error('version')
-                    <div class="alert alert-danger mt-3">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
-        </div><!-- /.col -->
-        <div class="col">
-            <!-- Genre -->
-            <div class="form-group row">
-                <label for="genre" class="col-sm-3 text-right control-label col-form-label">Genre</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control @error('genre') is-invalid @enderror" id="genre" name="genre" value="{{ isset($single) ? $single->genre : old('genre') }}">
-                    @error('genre')
-                    <div class="alert alert-danger mt-3">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
-
-            <!-- Time -->
-            <div class="form-group row">
-                <label for="time" class="col-sm-3 text-right control-label col-form-label">Time</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control @error('time') is-invalid @enderror" id="time" name="time" value="{{ isset($single) ? $single->time : old('time') }}">
-                    @error('time')
-                    <div class="alert alert-danger mt-3">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
             <!-- Catalog -->
             <div class="form-group row">
                 <label for="catalog" class="col-sm-3 text-right control-label col-form-label">Catalog</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control @error('catalog') is-invalid @enderror" id="catalog" name="catalog" value="{{ isset($single) ? $single->catalog : old('catalog') }}">
+                    <input type="text" class="form-control @error('catalog') is-invalid @enderror" id="catalog" name="catalog" value="{{ isset($album) ? $album->catalog : old('catalog') }}">
                     @error('catalog')
                     <div class="alert alert-danger mt-3">{{ $message }}</div>
                     @enderror
@@ -115,19 +71,76 @@
             <div class="form-group row">
                 <label for="upc" class="col-sm-3 text-right control-label col-form-label">UPC</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control @error('upc') is-invalid @enderror" id="upc" name="upc" value="{{ isset($single) ? $single->upc : old('upc') }}">
+                    <input type="text" class="form-control @error('upc') is-invalid @enderror" id="upc" name="upc" value="{{ isset($album) ? $album->upc : old('upc') }}">
                     @error('upc')
                     <div class="alert alert-danger mt-3">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
-
+        </div><!-- /.col -->
+        <div class="col">
             <!-- ISRC -->
             <div class="form-group row">
                 <label for="isrc" class="col-sm-3 text-right control-label col-form-label">ISRC</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control @error('isrc') is-invalid @enderror" id="isrc" name="isrc" value="{{ isset($single) ? $single->isrc : old('isrc') }}">
+                    <input type="text" class="form-control @error('isrc') is-invalid @enderror" id="isrc" name="isrc" value="{{ isset($album) ? $album->isrc : old('isrc') }}">
                     @error('isrc')
+                    <div class="alert alert-danger mt-3">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <!-- Tracks Quantity -->
+            <div class="form-group row">
+                <label for="tracks_quantity" class="col-sm-3 text-right control-label col-form-label">Tracks Quantity</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control @error('tracks_quantity') is-invalid @enderror" id="tracks_quantity" name="tracks_quantity" value="{{ isset($album) ? $album->tracks_quantity : old('tracks_quantity') }}">
+                    @error('tracks_quantity')
+                    <div class="alert alert-danger mt-3">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <!-- Various Artists -->
+            <div class="form-group row">
+                <label for="tracks_quantity" class="col-sm-3 text-right control-label col-form-label">Various Artists</label>
+                <div class="col-sm-9">
+                    <div class="form-check form-check-inline">
+                      <input
+                          class="form-check-input"
+                          type="radio"
+                          name="various_artists"
+                          id="inlineRadio1"
+                          value="1"
+                          {{ isset($album) && $album->various_artists == 1 ? 'checked' : null }}
+                          {{ old('various_artists') == 1 ? 'checked' : null }}
+                      >
+                      <label class="form-check-label" for="inlineRadio1">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                          class="form-check-input"
+                          type="radio"
+                          name="various_artists"
+                          id="inlineRadio2"
+                          value="0"
+                          {{ isset($album) && $album->various_artists == 0 ? 'checked' : null }}
+                          {{ !isset($album) && old('various_artists') == 0 ? 'checked' : null }}
+                      >
+                      <label class="form-check-label" for="inlineRadio2">No</label>
+                    </div>
+                    @error('various_artists')
+                    <div class="alert alert-danger mt-3">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <!-- Genre -->
+            <div class="form-group row">
+                <label for="genre" class="col-sm-3 text-right control-label col-form-label">Genre</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control @error('genre') is-invalid @enderror" id="genre" name="genre" value="{{ isset($album) ? $album->genre : old('genre') }}">
+                    @error('genre')
                     <div class="alert alert-danger mt-3">{{ $message }}</div>
                     @enderror
                 </div>
@@ -137,7 +150,7 @@
             <div class="form-group row">
                 <label for="released_at" class="col-sm-3 text-right control-label col-form-label">Released At</label>
                 <div class="col-sm-9">
-                    <input type="date" class="form-control @error('released_at') is-invalid @enderror" id="released_at" name="released_at" value="{{ isset($single) ? $single->released_at : old('released_at') }}">
+                    <input type="date" class="form-control @error('released_at') is-invalid @enderror" id="released_at" name="released_at" value="{{ isset($album) ? $album->released_at : old('released_at') }}">
                     @error('released_at')
                     <div class="alert alert-danger mt-3">{{ $message }}</div>
                     @enderror
@@ -148,8 +161,8 @@
     <hr>
     <div class="row">
         <div class="col-5">
-            @if(isset($single) && $single->coverart !== '')
-                <img class="img-fluid" src="/images/releases/singles/{{ $single->coverart }}-medium.jpg" alt="{{ $single->coverart_alt }}" title="{{ $single->coverart_alt }}">
+            @if(isset($album) && $album->coverart != '')
+                <img class="img-fluid" src="/images/releases/albums/{{ $album->coverart }}-medium.jpg" alt="{{ $album->coverart_alt }}" title="{{ $album->coverart_alt }}">
             @else
                 <img class="img-fluid" src="/images/no-image.jpg" alt="No Image Available" title="No Image Available">
             @endif
@@ -171,7 +184,7 @@
             <!-- Image Alt -->
             <div class="form-group">
                 <label for="coverart_alt">Alternative Image Text</label>
-                <input type="text" class="form-control @error('coverart_alt') is-invalid @enderror" id="coverart_alt" name="coverart_alt" value="{{ isset($single) ? $single->coverart_alt : old('coverart_alt') }}">
+                <input type="text" class="form-control @error('coverart_alt') is-invalid @enderror" id="coverart_alt" name="coverart_alt" value="{{ isset($album) ? $album->coverart_alt : old('coverart_alt') }}">
 
                 @error('coverart_alt')
                 <div class="alert alert-danger mt-3">{{ $message }}</div>
@@ -185,7 +198,7 @@
     <div class="form-group">
         <label for="description">Description</label>
 
-        <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="10">{{ isset($single) ? $single->description : old('description') }}</textarea>
+        <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="10">{{ isset($album) ? $album->description : old('description') }}</textarea>
 
         @error('description')
         <div class="alert alert-danger mt-3">{{ $message }}</div>
@@ -200,7 +213,7 @@
             <div class="form-group row">
                 <label for="beatport" class="col-sm-3 text-right control-label col-form-label">Beatport</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control @error('beatport') is-invalid @enderror" id="beatport" name="beatport" value="{{ isset($single) ? $single->beatport : old('beatport') }}">
+                    <input type="text" class="form-control @error('beatport') is-invalid @enderror" id="beatport" name="beatport" value="{{ isset($album) ? $album->beatport : old('beatport') }}">
                     @error('facebook')
                     <div class="alert alert-danger mt-3">{{ $message }}</div>
                     @enderror
@@ -211,7 +224,7 @@
             <div class="form-group row">
                 <label for="itunes" class="col-sm-3 text-right control-label col-form-label">Itunes</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control @error('itunes') is-invalid @enderror" id="itunes" name="itunes" value="{{ isset($single) ? $single->itunes : old('itunes') }}">
+                    <input type="text" class="form-control @error('itunes') is-invalid @enderror" id="itunes" name="itunes" value="{{ isset($album) ? $album->itunes : old('itunes') }}">
                     @error('itunes')
                     <div class="alert alert-danger mt-3">{{ $message }}</div>
                     @enderror
@@ -222,7 +235,7 @@
             <div class="form-group row">
                 <label for="spotify" class="col-sm-3 text-right control-label col-form-label">Spotify</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control @error('spotify') is-invalid @enderror" id="spotify" name="spotify" value="{{ isset($single) ? $single->spotify : old('spotify') }}">
+                    <input type="text" class="form-control @error('spotify') is-invalid @enderror" id="spotify" name="spotify" value="{{ isset($album) ? $album->spotify : old('spotify') }}">
                     @error('spotify')
                     <div class="alert alert-danger mt-3">{{ $message }}</div>
                     @enderror
@@ -234,7 +247,7 @@
             <div class="form-group row">
                 <label for="deezer" class="col-sm-3 text-right control-label col-form-label">Deezer</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control @error('deezer') is-invalid @enderror" id="deezer" name="deezer" value="{{ isset($single) ? $single->deezer : old('deezer') }}">
+                    <input type="text" class="form-control @error('deezer') is-invalid @enderror" id="deezer" name="deezer" value="{{ isset($album) ? $album->deezer : old('deezer') }}">
                     @error('deezer')
                     <div class="alert alert-danger mt-3">{{ $message }}</div>
                     @enderror
@@ -245,7 +258,7 @@
             <div class="form-group row">
                 <label for="soundcloud" class="col-sm-3 text-right control-label col-form-label">Soundcloud</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control @error('soundcloud') is-invalid @enderror" id="soundcloud" name="soundcloud" value="{{ isset($single) ? $single->soundcloud : old('soundcloud') }}">
+                    <input type="text" class="form-control @error('soundcloud') is-invalid @enderror" id="soundcloud" name="soundcloud" value="{{ isset($album) ? $album->soundcloud : old('soundcloud') }}">
                     @error('soundcloud')
                     <div class="alert alert-danger mt-3">{{ $message }}</div>
                     @enderror
@@ -256,7 +269,7 @@
             <div class="form-group row">
                 <label for="youtube" class="col-sm-3 text-right control-label col-form-label">Youtube</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control @error('youtube') is-invalid @enderror" id="youtube" name="youtube" value="{{ isset($single) ? $single->youtube : old('youtube') }}">
+                    <input type="text" class="form-control @error('youtube') is-invalid @enderror" id="youtube" name="youtube" value="{{ isset($album) ? $album->youtube : old('youtube') }}">
                     @error('youtube')
                     <div class="alert alert-danger mt-3">{{ $message }}</div>
                     @enderror
@@ -273,7 +286,7 @@
             <div class="form-group row">
                 <label for="meta_title" class="col-sm-3 text-right control-label col-form-label">Meta Title</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control @error('meta_title') is-invalid @enderror" id="meta_title" name="meta_title" value="{{ isset($single) ? $single->meta_title : old('meta_title') }}">
+                    <input type="text" class="form-control @error('meta_title') is-invalid @enderror" id="meta_title" name="meta_title" value="{{ isset($album) ? $album->meta_title : old('meta_title') }}">
                     @error('meta_title')
                     <div class="alert alert-danger mt-3">{{ $message }}</div>
                     @enderror
@@ -288,7 +301,7 @@
                         <option disabled selected>Select an option</option>
                         @foreach($meta_robots as $meta_name => $meta_value)
                             <option value="{{ $meta_value }}"
-                            {{ (isset($single) and ($single->meta_robots == $meta_value)) ? " selected" : null }}
+                            {{ (isset($album) and ($album->meta_robots == $meta_value)) ? " selected" : null }}
                             {{ old('meta_robots') == $meta_value ? " selected" : null }}
                             >{{ $meta_name }}</option>
                         @endforeach
@@ -304,7 +317,7 @@
             <div class="form-group">
                 <label for="meta_description">Meta Description</label>
 
-                <textarea type="text" class="form-control @error('meta_description') is-invalid @enderror" id="meta_description" name="meta_description" rows="3">{{ isset($single) ? $single->meta_description : old('meta_description') }}</textarea>
+                <textarea type="text" class="form-control @error('meta_description') is-invalid @enderror" id="meta_description" name="meta_description" rows="3">{{ isset($album) ? $album->meta_description : old('meta_description') }}</textarea>
 
                 @error('meta_description')
                 <div class="alert alert-danger mt-3">{{ $message }}</div>
@@ -317,7 +330,7 @@
 <!-- Button Save -->
 <div class="border-top">
     <div class="card-body text-right">
-        <a class="btn btn-primary" href="{{ route('admin.singles.index') }}" title="Cancel"><i class="fas fa-times"></i></a>
+        <a class="btn btn-primary" href="{{ route('admin.albums.index') }}" title="Cancel"><i class="fas fa-times"></i></a>
         <button type="submit" class="btn btn-success" title="Save"><i class="fas fa-save"></i></button>
     </div><!-- /.card-body -->
 </div><!-- End Button Save -->

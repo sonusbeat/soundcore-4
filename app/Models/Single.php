@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Single extends Model
 {
-        /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -35,7 +35,6 @@ class Single extends Model
         'meta_title',
         'meta_robots',
         'meta_description',
-        'active'
     ];
 
     /**

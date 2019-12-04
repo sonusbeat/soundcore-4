@@ -26,13 +26,13 @@
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-library-music"></i><span class="hide-menu">Releases</span></a>
                     <ul aria-expanded="false" class="collapse  first-level">
                         <li class="sidebar-item">
-                            <a href="{{ route("admin.singles.index") }}" class="sidebar-link">
-                                <i class="mdi mdi-music-note"></i><span class="hide-menu">Singles</span>
+                            <a href="{{ route("admin.albums.index") }}" class="sidebar-link">
+                                <i class="mdi mdi-bookmark-music"></i><span class="hide-menu">Albums</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">
-                                <i class="mdi mdi-bookmark-music"></i><span class="hide-menu">Albums</span>
+                            <a href="{{ route("admin.singles.index") }}" class="sidebar-link">
+                                <i class="mdi mdi-music-note"></i><span class="hide-menu">Singles</span>
                             </a>
                         </li>
                     </ul>

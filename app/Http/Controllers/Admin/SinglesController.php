@@ -193,6 +193,32 @@ class SinglesController extends Controller
     }
 
     /**
+     * Update active state of the specified resource in storage.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function active_single($id)
+    {
+        $single = Single::where('id', $id)->select(['id', 'title', 'active'])->first();
+
+        if($single->active):
+            $single->active = 0;
+            $message = 'disabled';
+        else:
+            $single->active = 1;
+            $message = 'enabled';
+        endif;
+
+        // Save to database
+        $single->save();
+
+        session()->flash('message', 'Single "'.$single->title.'" has been '.$message.' successfully!');
+
+        return redirect()->route('admin.singles.index');
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -221,32 +247,6 @@ class SinglesController extends Controller
         $single->delete();
 
         session()->flash('message', 'Single "'.$single->title.'" has been deleted successfully!');
-
-        return redirect()->route('admin.singles.index');
-    }
-
-        /**
-     * Update active state of the specified resource in storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function active_single($id)
-    {
-        $single = Single::where('id', $id)->select(['id', 'title', 'active'])->first();
-
-        if($single->active):
-            $single->active = 0;
-            $message = 'disabled';
-        else:
-            $single->active = 1;
-            $message = 'enabled';
-        endif;
-
-        // Save to database
-        $single->save();
-
-        session()->flash('message', 'Single "'.$single->title.'" has been '.$message.' successfully!');
 
         return redirect()->route('admin.singles.index');
     }
