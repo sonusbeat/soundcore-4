@@ -69,4 +69,20 @@ class Album extends Model
     {
         return $this->hasMany(Single::class);
     }
+    // *************************************************************** //
+
+    /**
+     * Get latest albums
+     *
+     * @param string $order Options: asc, desc
+     * @param int $limit
+     * @return Query
+     */
+    public static function latestAlbums($order = 'asc', $limit = 5)
+    {
+        return self::select('id', 'name')
+            ->orderBy('created_at', $order)
+            ->limit($limit)
+            ->get();
+    }
 }

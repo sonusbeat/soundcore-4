@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Album;
 use App\Models\Single;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -24,7 +25,8 @@ class AdministrationController extends Controller
     public function dashboard()
     {
         $data = [
-            "singles" => Single::latestSingles('desc')
+            "singles" => Single::latestSingles('desc'),
+            "albums" => Album::latestAlbums('desc')
         ];
 
         return view('admin.dashboard', $data);
