@@ -34,6 +34,28 @@
                 </div>
             </div>
 
+            <!-- Album -->
+            @isset($albums)
+            <div class="form-group row">
+                <label for="artist_id" class="col-sm-3 text-right control-label col-form-label">Album</label>
+                <div class="col-sm-9">
+                    <select name="album_id" id="album_id" class="custom-select @error('album_id') is-invalid @enderror">
+                        <option disabled selected>Select an option</option>
+                        @foreach($albums as $album)
+                            <option value="{{ $album->id }}"
+                            {{ (isset($single) and ($single->album_id == $album->id)) ? " selected" : null }}
+                            {{ old('album_id') == $album->id ? " selected" : null }}
+                            >{{ $album->name }}</option>
+                        @endforeach
+                        <option value="0">Not Applicable</option>
+                    </select>
+                    @error('album_id')
+                        <div class="alert alert-danger mt-3">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            @endisset
+
             <!-- Title -->
             <div class="form-group row">
                 <label for="title" class="col-sm-3 text-right control-label col-form-label">Title</label>

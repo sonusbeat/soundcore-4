@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Artist;
+use App\Models\Single;
 use Illuminate\Database\Eloquent\Model;
 
 class Album extends Model
@@ -36,9 +37,36 @@ class Album extends Model
         'meta_robots',
         'meta_description',
     ];
+    // ************************ MUTATORS ************************ //
+    /**
+     * Trait album's permalink.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setPermalinkAttribute($value)
+    {
+        $this->attributes['permalink'] = strtolower(str_replace(' ', '-', $value));
+    }
 
+    // ************************ RELATIONSHIPS ************************ //
+    /**
+     * Relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function artist()
     {
         return $this->belongsTo(Artist::class);
+    }
+
+    /**
+     * Relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function singles()
+    {
+        return $this->hasMany(Single::class);
     }
 }

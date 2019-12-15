@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Album;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SinglesRequest;
 use App\Models\Artist;
@@ -28,8 +29,12 @@ class SinglesController extends Controller
     public function index()
     {
         $singles = Single::with(['artist' => function($query) {
-            return $query->select('id', 'artist_name');
-        }])->get();
+            $query->select('id', 'artist_name');
+        }])->with(['album' => function($query) {
+            $query->select('id', 'name');
+        }])->select(['id', 'artist_id', 'album_id', 'title', 'meta_robots', 'active'])->get();
+
+//        return $singles;
 
         return view('admin.singles.index', compact('singles'));
     }
@@ -41,10 +46,13 @@ class SinglesController extends Controller
      */
     public function create()
     {
-        $artists = Artist::select('artist_name', 'id')->get();
-        $meta_robots = $this->meta_robots();
+        $data = [
+            'artists' => Artist::select('artist_name', 'id')->get(),
+            "albums" => Album::select(['id', 'name'])->get(),
+            'meta_robots' => $this->meta_robots()
+        ];
 
-        return view('admin.singles.create', compact('artists', 'meta_robots'));
+        return view('admin.singles.create', $data);
     }
 
     /**
@@ -122,6 +130,8 @@ class SinglesController extends Controller
         $data = [
 
             "artists" => Artist::select('artist_name', 'id')->get(),
+
+            "albums" => Album::select(['id', 'name'])->get(),
 
             "single" => Single::with(["artist" => function($query) {
                 return $query->select('id', 'artist_name');

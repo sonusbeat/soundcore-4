@@ -106,6 +106,8 @@ class AlbumsController extends Controller
     {
         $album = Album::with(['artist' => function($query) {
             $query->select('id', 'artist_name')->first();
+        }])->with(['singles' => function($query) {
+            $query->select('id', 'album_id', 'title')->get();
         }])->find($id);
 
         return view('admin.albums.show', compact('album'));
@@ -124,7 +126,7 @@ class AlbumsController extends Controller
 
             "album" => Album::with(["artist" => function($query) {
                     return $query->select('id', 'artist_name');
-                }])->where('id', $id)->first(),
+            }])->where('id', $id)->first(),
 
             "meta_robots" => $this->meta_robots()
         ];

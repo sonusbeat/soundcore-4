@@ -12,6 +12,7 @@
                     <tr>
                         <th>Title</th>
                         <th>Artist</th>
+                        <th>Album</th>
                         <th>Robots</th>
                         <th class="text-center">Active</th>
                         <th class="text-right">
@@ -26,6 +27,11 @@
                     <tr>
                         <td>{{ $single->title }}</td>
                         <td><a href="{{ route('admin.artists.show', $single->artist->id) }}">{{ $single->artist->artist_name }}</a></td>
+                        @if($single->album)
+                            <td><a href="{{ route('admin.albums.show', $single->album->id) }}">{{ $single->album->name }}</a></td>
+                        @else
+                            <td><b>Not Applicable</b></td>
+                        @endif
                         <td>{{ $single->meta_robots }}</td>
                         <td class="text-center">
                             <form action="{{ route('admin.singles.active', $single) }}" method="POST">

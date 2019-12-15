@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Album;
 use Facade\Ignition\QueryRecorder\Query;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,6 +15,7 @@ class Single extends Model
      */
     protected $fillable = [
         'artist_id',
+        'album_id',
         'title',
         'permalink',
         'feat',
@@ -45,6 +47,16 @@ class Single extends Model
     public function artist()
     {
         return $this->belongsTo(Artist::class);
+    }
+
+    /**
+     * Relationship
+     *
+     * @return string
+     */
+    public function album()
+    {
+        return $this->belongsTo(Album::class);
     }
 
     // ************************ MUTATORS ************************ //

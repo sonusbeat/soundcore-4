@@ -130,6 +130,16 @@
         </div><!-- /.col -->
     </div><!-- /.row -->
 
+    <div class="row">
+        <div class="col">
+            <h2>Songs</h2>
+            <ol>
+                @foreach($album->singles as $single)
+                <li><a href="#">{{ $single->title }}</a></li>
+                @endforeach
+            </ol>
+        </div>
+    </div>
 </div><!-- /.card -->
 <a href="{{ route('admin.albums.index') }}" class="btn btn-primary">Back</a>
 @endsection
