@@ -35,6 +35,11 @@
                                 <i class="mdi mdi-music-note"></i><span class="hide-menu">Singles</span>
                             </a>
                         </li>
+                        <li class="sidebar-item">
+                            <a href="{{ route("admin.stems.index") }}" class="sidebar-link">
+                                <i class="mdi mdi-music-note"></i><span class="hide-menu">Stems</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>

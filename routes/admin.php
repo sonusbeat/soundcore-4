@@ -16,6 +16,9 @@ Route::namespace('Admin')->prefix('admin')->as('admin.')->group(function() {
     Route::patch('single/{id}', 'SinglesController@active_single')->name('singles.active');
     Route::resource('singles', 'SinglesController');
 
+    Route::patch('stem/{id}', 'StemsController@active_stem')->name('stems.active');
+    Route::resource('stems', 'StemsController');
+
     Route::patch('active-user/{id}', 'UsersController@active_user')->name('users.active');
     Route::resource('users', 'UsersController');
 });

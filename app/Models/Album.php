@@ -1,9 +1,7 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use App\Models\Artist;
-use App\Models\Single;
 use Illuminate\Database\Eloquent\Model;
 
 class Album extends Model

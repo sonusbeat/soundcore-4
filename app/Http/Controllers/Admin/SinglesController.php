@@ -34,8 +34,6 @@ class SinglesController extends Controller
             $query->select('id', 'name');
         }])->select(['id', 'artist_id', 'album_id', 'title', 'meta_robots', 'active'])->get();
 
-//        return $singles;
-
         return view('admin.singles.index', compact('singles'));
     }
 
