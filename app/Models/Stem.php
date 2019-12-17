@@ -38,4 +38,19 @@ class Stem extends Model
     {
         return $this->belongsTo(Artist::class);
     }
+
+    /**
+     * Get latest stems
+     *
+     * @param string $order Options: asc, desc
+     * @param int $limit
+     * @return Query
+     */
+    public static function latestStems($order = 'asc', $limit = 5)
+    {
+        return self::select('id', 'title')
+            ->orderBy('created_at', $order)
+            ->limit($limit)
+            ->get();
+    }
 }

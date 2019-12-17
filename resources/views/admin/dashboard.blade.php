@@ -47,15 +47,21 @@
     <div class="col-4">
         <div class="card">
             <div class="card-header">
-                <div class="card-title">Last 5 something</div>
+                <div class="card-title">Last Stems</div>
                 <div class="card-body">
+                    @if($stems->count())
                     <ul>
-                        <li>lorem lipsum dolor dolem</li>
-                        <li>lorem lipsum dolor dolem</li>
-                        <li>lorem lipsum dolor dolem</li>
-                        <li>lorem lipsum dolor dolem</li>
-                        <li>lorem lipsum dolor dolem</li>
+                        @foreach($stems as $stem)
+                        <li>
+                            <a href="{{ route('admin.albums.show', $stem->id) }}">
+                                {{ $stem->title }}
+                            </a>
+                        </li>
+                        @endforeach
                     </ul>
+                    @else
+                    <div class="alert alert-orange font-weight-bold text-center">There Aren't Albums Yet !</div>
+                    @endif
                 </div>
             </div>
         </div>
