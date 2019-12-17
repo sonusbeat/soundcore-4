@@ -52,8 +52,48 @@ class Artist extends Model
     {
         $this->attributes['permalink'] = strtolower(str_replace(' ', '-', $value));
     }
-    // ******************************************************************************** //
+    // *********************************** STATIC ADMIN *********************************** //
 
+    /**
+     * Scope a query to get the artist singles.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeArtistSingles($query)
+    {
+        return $query->with(['singles' => function($query) {
+            $query->select('id', 'artist_id', 'title')->get();
+        }]);
+    }
+
+    /**
+     * Scope a query to get the artist albums.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeArtistAlbums($query)
+    {
+        return $query->with(['albums' => function($query) {
+            $query->select('id', 'artist_id', 'name')->get();
+        }]);
+    }
+
+    /**
+     * Scope a query to get the artist stems.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeArtistStems($query)
+    {
+        return $query->with(['stems' => function($query) {
+            $query->select('id', 'artist_id', 'title')->get();
+        }]);
+    }
+
+    // *********************************** RELATIONSHIPS *********************************** //
     /**
      * Get the singles for the current artist.
      */
@@ -61,4 +101,21 @@ class Artist extends Model
     {
         return $this->hasMany(Single::class);
     }
+
+    /**
+     * Get the albums for the current artist.
+     */
+    public function albums()
+    {
+        return $this->hasMany(Album::class);
+    }
+
+    /**
+     * Get the stems for the current artist.
+     */
+    public function stems()
+    {
+        return $this->hasMany(Stem::class);
+    }
+    // ************************************************************************************* //
 }

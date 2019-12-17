@@ -105,23 +105,55 @@
             </table>
         </div><!-- /.col -->
     </div><!-- /.row -->
+
     @if(count($artist->singles))
-    <div class="row ml-4 mb-4">
-        <div class="col-md-6">
+        <div class="ml-4 mb-4">
             <h2>Songs</h2>
 
             <ul>
                 @foreach($artist->singles as $single)
-                <li>
-                    <a href="{{ route('admin.singles.show', $single->id) }}">
-                        {{ $single->title }}
-                    </a>
-                </li>
+                    <li>
+                        <a href="{{ route('admin.singles.show', $single->id) }}">
+                            {{ $single->title }}
+                        </a>
+                    </li>
                 @endforeach
             </ul>
         </div>
+    @endif
+
+    @if(count($artist->albums))
+        <div class="ml-4 mb-4">
+            <h2>Songs</h2>
+
+            <ul>
+                @foreach($artist->albums as $album)
+                    <li>
+                        <a href="{{ route('admin.albums.show', $album->id) }}">
+                            {{ $album->title }}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    @if(count($artist->stems))
+    <div class="ml-4 mb-4">
+        <h2>Stems</h2>
+
+        <ul>
+            @foreach($artist->stems as $stem)
+            <li>
+                <a href="{{ route('admin.stems.show', $stem->id) }}">
+                    {{ $stem->title }}
+                </a>
+            </li>
+            @endforeach
+        </ul>
     </div>
     @endif
+
 </div><!-- /.card -->
 <a href="{{ route('admin.artists.index') }}" class="btn btn-primary">Back</a>
 @endsection

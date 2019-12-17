@@ -87,9 +87,7 @@ class ArtistsController extends Controller
      */
     public function show($id)
     {
-        $artist = Artist::with(['singles' => function($query) {
-            $query->select('id', 'artist_id', 'title')->get();
-        }])->find($id);
+        $artist = Artist::artistSingles()->artistAlbums()->artistStems()->find($id);
 
         return view('admin.artists.show', compact('artist'));
     }
