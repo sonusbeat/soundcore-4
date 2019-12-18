@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Album;
 use Facade\Ignition\QueryRecorder\Query;
 use Illuminate\Database\Eloquent\Model;
 

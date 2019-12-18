@@ -21,8 +21,8 @@ class CreateStemsTable extends Migration
             $table->string('version', 20)->default('original mix');
             $table->string('time', 10);
             $table->string('catalog', 100);
-            $table->string('upc', 150)->unique();
-            $table->string('isrc', 150)->unique();
+            $table->string('upc', 150);
+            $table->string('isrc', 150);
             $table->date('released_at');
             $table->string('genre');
             $table->string('secondary_genre');

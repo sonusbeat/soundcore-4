@@ -47,7 +47,15 @@
                             {{ old('album_id') == $album->id ? " selected" : null }}
                             >{{ $album->name }}</option>
                         @endforeach
-                        <option value="0" {{ !$single->albums ? 'selected' : '' }}>Not Applicable</option>
+                        <option value="0"
+                            @isset($single)
+                                {{ !$single->albums ? 'selected' : '' }}
+                            @else
+                                {{ old('album_id') == 0 ? 'selected' : '' }}
+                            @endisset
+                        >
+                            Not Applicable
+                        </option>
                     </select>
                     @error('album_id')
                         <div class="alert alert-danger mt-3">{{ $message }}</div>

@@ -130,7 +130,8 @@
         </div><!-- /.col -->
     </div><!-- /.row -->
 
-    <div class="row">
+    @if($album->singles()->count())
+    <div class="row ml-4">
         <div class="col">
             <h2>Songs</h2>
             <ol>
@@ -140,6 +141,7 @@
             </ol>
         </div>
     </div>
+    @endif
 </div><!-- /.card -->
 <a href="{{ route('admin.albums.index') }}" class="btn btn-primary">Back</a>
 @endsection

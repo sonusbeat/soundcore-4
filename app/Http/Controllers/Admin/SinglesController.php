@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Album;
+use App\Models\Album;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SinglesRequest;
 use App\Models\Artist;
