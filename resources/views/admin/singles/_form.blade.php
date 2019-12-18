@@ -107,8 +107,7 @@
                     @enderror
                 </div>
             </div>
-        </div><!-- /.col -->
-        <div class="col">
+
             <!-- Genre -->
             <div class="form-group row">
                 <label for="genre" class="col-sm-3 text-right control-label col-form-label">Genre</label>
@@ -119,7 +118,8 @@
                     @enderror
                 </div>
             </div>
-
+        </div><!-- /.col -->
+        <div class="col">
             <!-- Time -->
             <div class="form-group row">
                 <label for="time" class="col-sm-3 text-right control-label col-form-label">Time</label>
