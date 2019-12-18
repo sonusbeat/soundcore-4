@@ -124,12 +124,36 @@
             <div class="form-group row">
                 <label for="time" class="col-sm-3 text-right control-label col-form-label">Time</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control @error('time') is-invalid @enderror" id="time" name="time" value="{{ isset($single) ? $single->time : old('time') }}">
+                    <input type="time" class="form-control @error('time') is-invalid @enderror" id="time" name="time" value="{{ isset($single) ? $single->time : old('time') }}">
                     @error('time')
                     <div class="alert alert-danger mt-3">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
+
+
+            <!-- BPM -->
+            <div class="form-group row">
+                <label for="bpm" class="col-sm-3 text-right control-label col-form-label">BPM</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control @error('bpm') is-invalid @enderror" id="bpm" name="bpm" value="{{ isset($single) ? $single->bpm : old('bpm') }}">
+                    @error('bpm')
+                    <div class="alert alert-danger mt-3">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <!-- KEY -->
+            <div class="form-group row">
+                <label for="key" class="col-sm-3 text-right control-label col-form-label">KEY</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control @error('key') is-invalid @enderror" id="key" name="key" value="{{ isset($single) ? $single->key : old('key') }}">
+                    @error('key')
+                    <div class="alert alert-danger mt-3">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
             <!-- Catalog -->
             <div class="form-group row">
                 <label for="catalog" class="col-sm-3 text-right control-label col-form-label">Catalog</label>

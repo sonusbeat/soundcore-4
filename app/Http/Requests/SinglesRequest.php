@@ -36,6 +36,8 @@ class SinglesRequest extends FormRequest
             'version'   => 'required|between:3,50',
             'genre'     => 'required|between:3,100',
             'time'      => 'required|max:10',
+            'bpm'       => 'required|max:8',
+            'key'       => 'required|max:8',
             'catalog'   => 'required|between:3,150|unique:singles,catalog,'.$id,
             'upc'       => 'required|between:3,255|unique:singles,upc,'.$id,
             'isrc'      => 'required|between:3,255|unique:singles,isrc,'.$id,

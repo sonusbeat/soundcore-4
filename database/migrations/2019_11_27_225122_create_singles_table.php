@@ -22,7 +22,9 @@ class CreateSinglesTable extends Migration
             $table->string('feat', 100)->nullable();
             $table->string('version', 100)->default('Original Mix');
             $table->string('genre', 100);
-            $table->string('time', 10);
+            $table->string('time', 6);
+            $table->string('bpm', 4);
+            $table->string('key', 8);
             $table->string('catalog', 100)->unique();
             $table->string('upc', 100)->unique();
             $table->string('isrc', 100)->unique();
