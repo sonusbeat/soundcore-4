@@ -14,48 +14,64 @@
         <div class="col-md-7">
             <div class="card-body">
                 <h2 class="card-title">{{ $stem->title }}</h2>
-                <table class="table">
-                    <tr>
-                        <th>Artist</th>
-                        <td>
-                            <a href="{{ route('admin.artists.show', $stem->artist->id) }}">
-                                {{ $stem->artist->artist_name }}
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Permalink</th>
-                        <td>{{ $stem->permalink }}</td>
-                    </tr>
-                    <tr>
-                        <th>Version</th>
-                        <td>{{ $stem->version }}</td>
-                    </tr>
-                    <tr>
-                        <th>Time</th>
-                        <td>{{ $stem->time }}</td>
-                    </tr>
-                    <tr>
-                        <th>Catalog</th>
-                        <td>{{ $stem->catalog }}</td>
-                    </tr>
-                    <tr>
-                        <th>UPC</th>
-                        <td>{{ $stem->upc }}</td>
-                    </tr>
-                    <tr>
-                        <th>ISRC</th>
-                        <td>{{ $stem->isrc }}</td>
-                    </tr>
-                    <tr>
-                        <th>Genre</th>
-                        <td>{{ $stem->genre }}</td>
-                    </tr>
-                    <tr>
-                        <th>Secondary Genre</th>
-                        <td>{{ $stem->secondary_genre }}</td>
-                    </tr>
-                </table>
+                <div class="row">
+                    <div class="col">
+                        <table class="table">
+                            <tr>
+                                <th>Artist</th>
+                                <td>
+                                    <a href="{{ route('admin.artists.show', $stem->artist->id) }}">
+                                        {{ $stem->artist->artist_name }}
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Permalink</th>
+                                <td>{{ $stem->permalink }}</td>
+                            </tr>
+                            <tr>
+                                <th>Version</th>
+                                <td>{{ $stem->version }}</td>
+                            </tr>
+                            <tr>
+                                <th>Time</th>
+                                <td>{{ $stem->time }}</td>
+                            </tr>
+                            <tr>
+                                <th>BPM</th>
+                                <td>{{ $stem->bpm }}</td>
+                            </tr>
+                            <tr>
+                                <th>KEY</th>
+                                <td>{{ $stem->key }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col">
+                        <table class="table">
+                            <tr>
+                                <th>Catalog</th>
+                                <td>{{ $stem->catalog }}</td>
+                            </tr>
+                            <tr>
+                                <th>UPC</th>
+                                <td>{{ $stem->upc }}</td>
+                            </tr>
+                            <tr>
+                                <th>ISRC</th>
+                                <td>{{ $stem->isrc }}</td>
+                            </tr>
+                            <tr>
+                                <th>Genre</th>
+                                <td>{{ $stem->genre }}</td>
+                            </tr>
+                            <tr>
+                                <th>Secondary Genre</th>
+                                <td>{{ $stem->secondary_genre }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

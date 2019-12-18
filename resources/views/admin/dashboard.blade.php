@@ -19,6 +19,7 @@
                     </ul>
                     @else
                     <div class="alert alert-orange font-weight-bold text-center">There Aren't Singles Yet !</div>
+                    <a href="{{ route('admin.singles.create') }}" class="btn btn-primary btn-block btn-lg">Create Single</a>
                     @endif
                 </div>
             </div>
@@ -42,6 +43,7 @@
                     </ul>
                     @else
                     <div class="alert alert-orange font-weight-bold text-center">There Aren't Albums Yet !</div>
+                    <a href="{{ route('admin.albums.create') }}" class="btn btn-primary btn-block btn-lg">Create Album</a>
                     @endif
                 </div>
             </div>
@@ -65,6 +67,7 @@
                     </ul>
                     @else
                     <div class="alert alert-orange font-weight-bold text-center">There Aren't Stems Yet !</div>
+                    <a href="{{ route('admin.stems.create') }}" class="btn btn-primary btn-block btn-lg">Create Stem</a>
                     @endif
                 </div>
             </div>
