@@ -14,48 +14,64 @@
         <div class="col-md-7">
             <div class="card-body">
                 <h2 class="card-title">{{ $single->title }}</h2>
-                <table class="table">
-                    <tr>
-                        <th>Artist</th>
-                        <td>
-                            <a href="{{ route('admin.artists.show', $single->artist->id) }}">
-                                {{ $single->artist->artist_name }}
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Permalink</th>
-                        <td>{{ $single->permalink }}</td>
-                    </tr>
-                    <tr>
-                        <th>Feat</th>
-                        <td>{{ $single->feat }}</td>
-                    </tr>
-                    <tr>
-                        <th>Version</th>
-                        <td>{{ $single->version }}</td>
-                    </tr>
-                    <tr>
-                        <th>Genre</th>
-                        <td>{{ $single->genre }}</td>
-                    </tr>
-                    <tr>
-                        <th>Time</th>
-                        <td>{{ $single->time }}</td>
-                    </tr>
-                    <tr>
-                        <th>Catalog</th>
-                        <td>{{ $single->catalog }}</td>
-                    </tr>
-                    <tr>
-                        <th>UPC</th>
-                        <td>{{ $single->upc }}</td>
-                    </tr>
-                    <tr>
-                        <th>ISRC</th>
-                        <td>{{ $single->isrc }}</td>
-                    </tr>
-                </table>
+                <div class="row">
+                    <div class="col">
+                        <table class="table">
+                            <tr>
+                                <th>Artist</th>
+                                <td>
+                                    <a href="{{ route('admin.artists.show', $single->artist->id) }}">
+                                        {{ $single->artist->artist_name }}
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Permalink</th>
+                                <td>{{ $single->permalink }}</td>
+                            </tr>
+                            <tr>
+                                <th>Feat</th>
+                                <td>{{ $single->feat }}</td>
+                            </tr>
+                            <tr>
+                                <th>Version</th>
+                                <td>{{ $single->version }}</td>
+                            </tr>
+                            <tr>
+                                <th>Genre</th>
+                                <td>{{ $single->genre }}</td>
+                            </tr>
+                            <tr>
+                                <th>Time</th>
+                                <td>{{ $single->time }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col">
+                        <table class="table">
+                            <tr>
+                                <th>BPM</th>
+                                <td>{{ $single->bpm }}</td>
+                            </tr>
+                            <tr>
+                                <th>KEY</th>
+                                <td>{{ $single->key }}</td>
+                            </tr>
+                            <tr>
+                                <th>Catalog</th>
+                                <td>{{ $single->catalog }}</td>
+                            </tr>
+                            <tr>
+                                <th>UPC</th>
+                                <td>{{ $single->upc }}</td>
+                            </tr>
+                            <tr>
+                                <th>ISRC</th>
+                                <td>{{ $single->isrc }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
