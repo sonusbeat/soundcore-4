@@ -34,7 +34,7 @@
                 </div>
             </div>
 
-            <!-- Tite -->
+            <!-- Title -->
             <div class="form-group row">
                 <label for="title" class="col-sm-3 text-right control-label col-form-label">Title</label>
                 <div class="col-sm-9">
@@ -67,17 +67,6 @@
                 </div>
             </div>
 
-            <!-- Time -->
-            <div class="form-group row">
-                <label for="time" class="col-sm-3 text-right control-label col-form-label">Time</label>
-                <div class="col-sm-9">
-                    <input type="time" class="form-control @error('time') is-invalid @enderror" id="time" name="time" value="{{ isset($stem) ? $stem->time : old('time') }}">
-                    @error('time')
-                    <div class="alert alert-danger mt-3">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
-
             <!-- Catalog -->
             <div class="form-group row">
                 <label for="catalog" class="col-sm-3 text-right control-label col-form-label">Catalog</label>
@@ -88,13 +77,13 @@
                     @enderror
                 </div>
             </div>
-        </div><!-- /.col -->
-        <div class="col">
+
             <!-- UPC -->
             <div class="form-group row">
                 <label for="upc" class="col-sm-3 text-right control-label col-form-label">UPC</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control @error('upc') is-invalid @enderror" id="upc" name="upc" value="{{ isset($stem) ? $stem->upc : old('upc') }}">
+                    <input type="text" class="form-control @error('upc') is-invalid @enderror" id="upc" name="upc"
+                           value="{{ isset($stem) ? $stem->upc : old('upc') }}">
                     @error('upc')
                     <div class="alert alert-danger mt-3">{{ $message }}</div>
                     @enderror
@@ -111,7 +100,8 @@
                     @enderror
                 </div>
             </div>
-
+        </div><!-- /.col -->
+        <div class="col">
             <!-- Released At -->
             <div class="form-group row">
                 <label for="released_at" class="col-sm-3 text-right control-label col-form-label">Released At</label>
@@ -129,6 +119,39 @@
                 <div class="col-sm-9">
                     <input type="text" class="form-control @error('genre') is-invalid @enderror" id="genre" name="genre" value="{{ isset($stem) ? $stem->genre : old('genre') }}">
                     @error('genre')
+                    <div class="alert alert-danger mt-3">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <!-- Time -->
+            <div class="form-group row">
+                <label for="time" class="col-sm-3 text-right control-label col-form-label">Time</label>
+                <div class="col-sm-9">
+                    <input type="time" class="form-control @error('time') is-invalid @enderror" id="time" name="time" value="{{ isset($stem) ? $stem->time : old('time') }}">
+                    @error('time')
+                    <div class="alert alert-danger mt-3">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <!-- BPM -->
+            <div class="form-group row">
+                <label for="bpm" class="col-sm-3 text-right control-label col-form-label">BPM</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control @error('bpm') is-invalid @enderror" id="bpm" name="bpm" value="{{ isset($stem) ? $stem->bpm : old('bpm') }}">
+                    @error('bpm')
+                    <div class="alert alert-danger mt-3">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <!-- KEY -->
+            <div class="form-group row">
+                <label for="key" class="col-sm-3 text-right control-label col-form-label">KEY</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control @error('key') is-invalid @enderror" id="key" name="key" value="{{ isset($stem) ? $stem->key : old('key') }}">
+                    @error('key')
                     <div class="alert alert-danger mt-3">{{ $message }}</div>
                     @enderror
                 </div>

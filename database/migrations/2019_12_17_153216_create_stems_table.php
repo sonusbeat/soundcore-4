@@ -19,12 +19,14 @@ class CreateStemsTable extends Migration
             $table->string('title', 200)->unique();
             $table->string('permalink', 200)->unique();
             $table->string('version', 20)->default('original mix');
-            $table->string('time', 10);
             $table->string('catalog', 100);
             $table->string('upc', 150);
             $table->string('isrc', 150);
             $table->date('released_at');
             $table->string('genre');
+            $table->string('time', 6);
+            $table->string('bpm', 4);
+            $table->string('key', 8);
             $table->string('secondary_genre');
             $table->string('coverart')->nullable()->default('no-image.jpg');
             $table->string('coverart_alt')->nullable()->default('No Image');

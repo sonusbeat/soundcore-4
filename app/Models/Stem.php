@@ -17,6 +17,8 @@ class Stem extends Model
         'permalink',
         'version',
         'time',
+        'bpm',
+        'key',
         'catalog',
         'upc',
         'isrc',

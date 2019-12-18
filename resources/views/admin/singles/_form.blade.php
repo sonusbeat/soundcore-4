@@ -131,7 +131,6 @@
                 </div>
             </div>
 
-
             <!-- BPM -->
             <div class="form-group row">
                 <label for="bpm" class="col-sm-3 text-right control-label col-form-label">BPM</label>
