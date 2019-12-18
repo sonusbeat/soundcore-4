@@ -57,14 +57,14 @@
                     <ul>
                         @foreach($stems as $stem)
                         <li>
-                            <a href="{{ route('admin.albums.show', $stem->id) }}">
+                            <a href="{{ route('admin.stems.show', $stem->id) }}">
                                 {{ $stem->title }}
                             </a>
                         </li>
                         @endforeach
                     </ul>
                     @else
-                    <div class="alert alert-orange font-weight-bold text-center">There Aren't Albums Yet !</div>
+                    <div class="alert alert-orange font-weight-bold text-center">There Aren't Stems Yet !</div>
                     @endif
                 </div>
             </div>
