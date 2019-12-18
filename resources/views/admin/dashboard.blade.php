@@ -7,6 +7,7 @@
             <div class="card-header">
                 <div class="card-title">Last Published Singles</div>
                 <div class="card-body">
+                    @if($singles->count())
                     <ul>
                         @foreach($singles as $single)
                         <li>
@@ -16,6 +17,9 @@
                         </li>
                         @endforeach
                     </ul>
+                    @else
+                    <div class="alert alert-orange font-weight-bold text-center">There Aren't Singles Yet !</div>
+                    @endif
                 </div>
             </div>
         </div>
