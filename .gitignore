@@ -21,5 +21,7 @@ yarn-error.log
 /public/images/stems/*.jpg
 
 database/seeds/ArtistsTableSeeder.php
-database/seeds/SinglesTableSeeder.php
 database/seeds/UsersTableSeeder.php
+database/seeds/AlbumsTableSeeder.php
+database/seeds/SinglesTableSeeder.php
+database/seeds/StemsTableSeeder.php
