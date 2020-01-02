@@ -32,7 +32,7 @@ class StemsRequest extends FormRequest
             'title' => 'required|between:3,200',
             'permalink' => 'required|between:3,200|unique:singles,permalink,' . $id,
             'version' => 'required|between:3,100',
-            'catalog' => 'required|between:3,150|unique:stems,catalog,' . $id,
+            'catalog' => 'required|between:3,150',
             'upc' => 'required|between:3,255',
             'isrc' => 'required|between:3,255',
             'released_at' => 'required|date',

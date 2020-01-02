@@ -25,7 +25,7 @@ class CreateSinglesTable extends Migration
             $table->string('time', 6);
             $table->string('bpm', 4);
             $table->string('key', 8);
-            $table->string('catalog', 100)->unique();
+            $table->string('catalog', 100);
             $table->string('upc', 100)->unique();
             $table->string('isrc', 100)->unique();
             $table->date('released_at');
