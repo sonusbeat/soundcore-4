@@ -53,7 +53,7 @@
                         @if(isset($albums) && $albums->count())
                             @foreach($albums as $album)
                                 <option value="{{ $album->id }}"
-                                 {{ (isset($single) and ($single->album_id == $album->id)) ? " selected" : null }}
+                                 {{ (isset($stem) and ($stem->album_id == $album->id)) ? " selected" : null }}
                                  {{ old('album_id') == $album->id ? " selected" : null }}
                                 >{{ $album->name }}</option>
                             @endforeach
