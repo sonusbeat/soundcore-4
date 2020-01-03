@@ -13,6 +13,7 @@ class Stem extends Model
      */
     protected $fillable = [
         'artist_id',
+        'album_id',
         'title',
         'permalink',
         'version',
@@ -36,9 +37,24 @@ class Stem extends Model
         'meta_description',
     ];
 
+    /**
+     * Get the artist of the stem.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function artist()
     {
         return $this->belongsTo(Artist::class);
+    }
+
+    /**
+     * Get the album of the stem.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function album()
+    {
+        return $this->belongsTo(Album::class);
     }
 
     /**
@@ -54,5 +70,32 @@ class Stem extends Model
             ->orderBy('created_at', $order)
             ->limit($limit)
             ->get();
+    }
+
+    /* -------------------------- SCOPES -------------------------- */
+    /**
+     * Scope a query to get the stems artist.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeStemArtist($query)
+    {
+        return $query->with(['artist' => function($query) {
+            $query->select('id', 'artist_name')->get();
+        }]);
+    }
+
+    /**
+     * Scope a query to get the stems album.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeStemAlbum($query)
+    {
+        return $query->with(['album' => function($query) {
+            $query->select('id', 'name')->get();
+        }]);
     }
 }

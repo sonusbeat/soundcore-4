@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StemsRequest;
+use App\Models\Album;
 use App\Models\Artist;
 use App\Models\Stem;
 use App\Traits\ImageTrait;
@@ -26,9 +27,9 @@ class StemsController extends Controller
      */
     public function index()
     {
-        $stems = Stem::with(['artist' => function($query) {
-            $query->select('id', 'artist_name');
-        }])->select(['id', 'artist_id', 'title', 'meta_robots', 'active'])->get();
+        $stems = Stem::StemArtist()
+            ->StemAlbum()
+            ->select(['id', 'artist_id', 'album_id', 'title', 'meta_robots', 'active'])->get();
 
         return view('admin.stems.index', compact('stems'));
     }
@@ -42,6 +43,7 @@ class StemsController extends Controller
     {
         $data = [
             'artists' => Artist::select('artist_name', 'id')->get(),
+            'albums' => Album::select('name', 'id')->get(),
             'meta_robots' => $this->meta_robots()
         ];
 
@@ -123,6 +125,8 @@ class StemsController extends Controller
         $data = [
 
             "artists" => Artist::select('artist_name', 'id')->get(),
+
+            'albums' => Album::select('name', 'id')->get(),
 
             "stem" => Stem::with(["artist" => function($query) {
                 return $query->select('id', 'artist_name');

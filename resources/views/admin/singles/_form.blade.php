@@ -41,21 +41,23 @@
                 <div class="col-sm-9">
                     <select name="album_id" id="album_id" class="custom-select @error('album_id') is-invalid @enderror">
                         <option disabled selected>Select an option</option>
-                        @foreach($albums as $album)
-                            <option value="{{ $album->id }}"
-                            {{ (isset($single) and ($single->album_id == $album->id)) ? " selected" : null }}
-                            {{ old('album_id') == $album->id ? " selected" : null }}
-                            >{{ $album->name }}</option>
-                        @endforeach
                         <option value="0"
                             @isset($single)
-                                {{ !$single->albums ? 'selected' : '' }}
+                                {{ $single->album_id == 0 ? ' selected' : '' }}
                             @else
-                                {{ old('album_id') == 0 ? 'selected' : '' }}
+                                {{ old('album_id') ? ' selected' : '' }}
                             @endisset
                         >
                             Not Applicable
                         </option>
+                        @if(isset($albums) && $albums->count())
+                            @foreach($albums as $album)
+                                <option value="{{ $album->id }}"
+                                 {{ (isset($single) and ($single->album_id == $album->id)) ? " selected" : null }}
+                                 {{ old('album_id') == $album->id ? " selected" : null }}
+                                >{{ $album->name }}</option>
+                            @endforeach
+                        @endif
                     </select>
                     @error('album_id')
                         <div class="alert alert-danger mt-3">{{ $message }}</div>

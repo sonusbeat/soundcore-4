@@ -28,11 +28,9 @@ class SinglesController extends Controller
      */
     public function index()
     {
-        $singles = Single::with(['artist' => function($query) {
-            $query->select('id', 'artist_name');
-        }])->with(['album' => function($query) {
-            $query->select('id', 'name');
-        }])->select(['id', 'artist_id', 'album_id', 'title', 'meta_robots', 'active'])->get();
+        $singles = Single::SingleArtist()
+            ->SingleAlbum()
+            ->select(['id', 'artist_id', 'album_id', 'title', 'meta_robots', 'active'])->get();
 
         return view('admin.singles.index', compact('singles'));
     }

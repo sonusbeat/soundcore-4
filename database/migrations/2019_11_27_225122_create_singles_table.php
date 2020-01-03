@@ -16,7 +16,7 @@ class CreateSinglesTable extends Migration
         Schema::create('singles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('artist_id')->index();
-            $table->integer('album_id')->nullable()->index();
+            $table->integer('album_id')->unsigned()->default(0)->index();
             $table->string('title', 200);
             $table->string('permalink')->unique();
             $table->string('feat', 100)->nullable();

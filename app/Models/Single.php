@@ -89,5 +89,32 @@ class Single extends Model
             ->limit($limit)
             ->get();
     }
+
+    /* -------------------------- SCOPES -------------------------- */
+    /**
+     * Scope a query to get the stems artist.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeSingleArtist($query)
+    {
+        return $query->with(['artist' => function($query) {
+            $query->select('id', 'artist_name')->get();
+        }]);
+    }
+
+        /**
+     * Scope a query to get the stems album.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeSingleAlbum($query)
+    {
+        return $query->with(['album' => function($query) {
+            $query->select('id', 'name')->get();
+        }]);
+    }
     // ********************************************** //
 }

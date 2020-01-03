@@ -16,6 +16,7 @@ class CreateStemsTable extends Migration
         Schema::create('stems', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('artist_id')->unsigned()->index();
+            $table->integer('album_id')->unsigned()->default(0)->index();
             $table->string('title', 200)->unique();
             $table->string('permalink', 200)->unique();
             $table->string('version', 20)->default('original mix');

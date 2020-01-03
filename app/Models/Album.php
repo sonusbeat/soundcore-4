@@ -67,6 +67,16 @@ class Album extends Model
     {
         return $this->hasMany(Single::class);
     }
+
+    /**
+     * Relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function stems()
+    {
+        return $this->hasMany(Stem::class);
+    }
     // *************************************************************** //
 
     /**

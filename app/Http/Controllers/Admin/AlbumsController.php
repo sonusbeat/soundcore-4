@@ -108,6 +108,8 @@ class AlbumsController extends Controller
             $query->select('id', 'artist_name')->first();
         }])->with(['singles' => function($query) {
             $query->select('id', 'album_id', 'title')->get();
+        }])->with(['stems' => function($query) {
+            $query->select('id', 'album_id', 'title')->get();
         }])->find($id);
 
         return view('admin.albums.show', compact('album'));
