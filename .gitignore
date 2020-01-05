@@ -20,8 +20,10 @@ yarn-error.log
 /public/images/releases/albums/*.jpg
 /public/images/stems/*.jpg
 
-database/seeds/ArtistsTableSeeder.php
-database/seeds/UsersTableSeeder.php
-database/seeds/AlbumsTableSeeder.php
-database/seeds/SinglesTableSeeder.php
-database/seeds/StemsTableSeeder.php
+
+/database/seeds/seeds/AlbumsTableSeeder.php
+/database/seeds/seeds/ArtistsTableSeeder.php
+/database/seeds/seeds/SinglesTableSeeder.php
+/database/seeds/seeds/StemsTableSeeder.php
+/database/seeds/seeds/UsersTableSeeder.php
+
